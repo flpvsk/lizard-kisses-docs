@@ -5,14 +5,13 @@
 \usepackage{caption}
 \usepackage{tabularray}
 \usepackage{geometry}
-% \usepackage[margin=2cm]{geometry}
-\captionsetup[table]{position=bottom}
+\usepackage{siunitx}
 
 \begin{document}
 \begin{titlepage}
   \vspace*{\stretch{1.0}}
   \begin{center}
-    \Large\textbf{Build Lizard Kisses}\\
+    \Large\textbf{Build Lizard Kisses Overdrive}\\
     \large{Soldering Workshop by Pedal Markt}
   \end{center}
   \vspace*{\fill}
@@ -20,34 +19,42 @@
     \today
   \end{center}
 \end{titlepage}
+
 \section{BOM – Bill of Materials}
 
-Here is a list of parts you'd need to build the pedal.
-Each row corresponds to a component with a certain value,
-for example a `ceramic capacitor with value 1nF.` There could
-be one or more actual physical parts per each row,
-their designators are listed in the \textit{Reference}
+BOM is a document that lists the parts you'd need to build a
+project. Each row corresponds to a component with a certain
+value, for example a `ceramic capacitor with value 1nF.`
+There could be one or more actual physical part per each
+row, their designators are listed in the \textit{Reference}
 column.
+
+You could experiment with some of the parts that have a
+drastic effect on the sound of the pedal. For those parts
+the BOM suggests using sockets. Possible components that
+could go into those sockets are listed later in the section.
 
 \newgeometry{top=1cm}
 
 \begin{table}[h!]
+  \caption{BOM}
   \centerline{
     \begin{tblr}{
       hlines,
       vlines,
       rows={ht=1.2em},
       row{odd}={bg=gray9},
+      row{1}={bg=gray3,fg=white},
       width=1.3\linewidth,
       colspec={lX[1]llX[2]}
     }
-      \SetCell[c=5]{c}\textbf{Main board, floor side}
-      \\
       \hspace{1em}
       & \textbf{Ref}
       & \textbf{Value}
       & \textbf{Qnty}
       & \textbf{Description}
+      \\
+      \SetCell[c=5]{c,bg=gray3,fg=white}\textbf{Main board, floor side}
       \\
       \hspace{1em}
       & GND & Wire & 2 & $\approx10cm$, strip and pre-tin both ends
@@ -122,7 +129,7 @@ column.
       & Film capacitor
       \\
       \hspace{1em}
-      &  & Power Socket & 1
+      & -- & Power Socket & 1
       & 2-pin JST on the bottom-left of the board
       \\
       \hspace{1em}
@@ -137,20 +144,20 @@ column.
       & C2 & 47u & 1
       & Electrolytic capacitor
       \\
-      \SetCell[c=5]{c}\textbf{Outboard}
+      \SetCell[c=5]{c,bg=gray3,fg=white}\textbf{Outboard}
       \\
       \hspace{1em}
-      & & DC Jack & 1
+      & -- & DC Jack & 1
       & Mount and wire up the DC jack
       \\
       \hspace{1em}
-      & & Audio Jack & 2
+      & -- & Audio Jack & 2
       & Wire up audio jacks
       \\
-      \SetCell[c=5]{c}\textbf{Main board, player side}
+      \SetCell[c=5]{c,bg=gray3,fg=white}\textbf{Main board, player side}
       \\
       \hspace{1em}
-      &  & Ribbon cable & 1
+      & -- & Ribbon cable & 1
       & On the bottom-center of the board
       \\
       \hspace{1em}
@@ -166,20 +173,61 @@ column.
       & Switch
       \\
       \hspace{1em}
-      & & LED & 1
+      & -- & LED & 1
       &
       \\
-      \SetCell[c=5]{c}\textbf{Switch board, player side}
+      \SetCell[c=5]{c,bg=gray3,fg=white}\textbf{Switch board, player side}
       \\
       \hspace{1em}
-      &  & Footswitch & 1
+      & -- & Footswitch & 1
       & Switch
       \\
     \end{tblr}
   }
-  \caption{BOM}
 \end{table}
 
-\restoregeometry
+\restoregeometry{}
+
+\subsection{Note on values}
+
+Different kits and schematics designate values differently.
+For example, these usually mean the same value:
+\\
+$\SI{2.2}{\kohm} = 2.2k = 2k2 = 2.2 \times 10^{3} Ohm = 2200Ohm$
+\\
+$\SI{4.7}{\uF} = 4.7u = 4u7 = 4.7 \times 10^{-6} Farad = 0.0000047 Farad$
+
+\begin{table}[h!]
+  \caption{Component values}
+  \centerline{
+    \begin{tblr}{
+      hlines,
+      vlines,
+      rows={ht=1.2em},
+      row{1}={bg=gray3,fg=white},
+      colspec={Xrr}
+    }
+      \textbf{Value}
+      & \textbf{Multiplier}
+      & \textbf{Unit}
+      \\
+      \SetCell[c=3]{c}\textbf{Resistance}
+      \\
+      \SI{100}{\ohm}, 100R, 100 & 1 & Ohm
+      \\
+      \SI{1}{\kohm}, 1k & $10^{3}$ & Ohm
+      \\
+      \SI{1}{\Mohm}, 1M & $10^{6}$ & Ohm
+      \\
+      \SetCell[c=3]{c}\textbf{Capacitance}
+      \\
+      \SI{1}{\pF}, 1p & $10^{-12}$ & Farad
+      \\
+      \SI{1}{\nF}, 1n & $10^{-9}$ & Farad
+      \\
+      \SI{1}{\uF}, 1u & $10^{-6}$ & Farad
+    \end{tblr}
+  }
+\end{table}
 
 \end{document}
